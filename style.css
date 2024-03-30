@@ -1,0 +1,85 @@
+/* 
+#191923 - raisin black
+#FFFDED - ivory
+#9649CB - purpureus
+#007EA7 - cerulean
+#201335 - dark purple
+*/
+
+* {
+    padding: 0;
+    margin: auto;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Kanit", sans-serif;
+    height: 100%;
+    background-color: #201335;
+    color: aliceblue;
+}
+
+button {
+    font-family: "Kanit", sans-serif;
+}
+
+input {
+    font-family: "Kanit", sans-serif;
+}
+
+#starter {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    gap: 0px;
+    font-size: 1.5rem;
+
+    text-align: center;
+    padding: 2rem;
+    height: 20rem;
+    width: 50%;
+    border: #9649cb 0.125rem solid;
+    border-radius: 2rem;
+    -webkit-border-radius: 2rem;
+    -moz-border-radius: 2rem;
+    -ms-border-radius: 2rem;
+    -o-border-radius: 2rem;
+}
+
+.starter__center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+}
+
+.login__login {
+    justify-self: center;
+    height: 50%;
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -75%);
+    -webkit-transform: translate(0, -75%);
+    -moz-transform: translate(0, -75%);
+    -ms-transform: translate(0, -75%);
+    -o-transform: translate(0, -75%);
+}
+
+.login__register__swap {
+    justify-self: center;
+    height: 50%;
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, 25%);
+    -webkit-transform: translate(0, 25%);
+    -moz-transform: translate(0, 25%);
+    -ms-transform: translate(0, 25%);
+    -o-transform: translate(0, 25%);
+}
