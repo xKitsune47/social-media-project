@@ -29,9 +29,10 @@ input {
 }
 
 #starter {
+    opacity: 1;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 0px;
     font-size: 1.5rem;
 
@@ -58,28 +59,43 @@ input {
     -o-transform: translate(-50%, -50%);
 }
 
-.login__login {
-    justify-self: center;
-    height: 50%;
-    width: 80%;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -75%);
-    -webkit-transform: translate(0, -75%);
-    -moz-transform: translate(0, -75%);
-    -ms-transform: translate(0, -75%);
-    -o-transform: translate(0, -75%);
+.login__input {
+    background-color: #321e52;
+    border: #9649cb solid 0.0625rem;
+    height: 2rem;
+    padding: 0.5rem;
+    text-align: center;
+    color: aliceblue;
+    outline: none;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
 }
 
-.login__register__swap {
-    justify-self: center;
-    height: 50%;
+.starter__button {
+    width: 10rem;
+    height: 1.5rem;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+}
+
+#app {
     width: 80%;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, 25%);
-    -webkit-transform: translate(0, 25%);
-    -moz-transform: translate(0, 25%);
-    -ms-transform: translate(0, 25%);
-    -o-transform: translate(0, 25%);
+    background-color: black;
+    opacity: 0;
+
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 4fr;
+    gap: 0px;
+    height: 100%;
+
+    .navbar {
+        opacity: 0.2;
+    }
 }
