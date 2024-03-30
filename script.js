@@ -6,6 +6,9 @@ const loginRegisterSwap = document.querySelector(".register__swap__btn");
 const labelSign = document.querySelector(".login__register__form__label");
 const labelChangeSign = document.querySelector(".login__register__swap__label");
 
+const appLoginPage = document.querySelector(".starter");
+const appPage = document.querySelector(".app");
+
 const inputUsername = document.querySelector(".login__register__username");
 const inputPassword = document.querySelector(".login__register__password");
 
@@ -25,6 +28,14 @@ const accounts = [
     {
         username: "ac",
         passwd: "4",
+    },
+];
+
+const posts = [
+    {
+        post_id: 1,
+        text: "",
+        image: "",
     },
 ];
 
@@ -48,8 +59,10 @@ const checkUser = function (user, password) {
     currentAccount = accounts.find((acc) => acc.username === user);
     if (currentAccount?.passwd === password) {
         console.log("logged in");
+        appLoginPage.style.opacity = 0;
+        appPage.style.opacity = 1;
     } else {
-        alert("wrong credentials");
+        alert("username or password are incorrect");
     }
 };
 
