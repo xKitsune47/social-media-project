@@ -102,3 +102,9 @@ loginRegisterButton.addEventListener("click", function (e) {
         createUser(inputUsername.value, inputPassword.value);
     }
 });
+
+// TO REMOVE LATER
+// currentAccount = accounts[1];
+// appLoginPage.style.opacity = 0;
+// appPage.style.opacity = 1;
+// TO REMOVE LATER
