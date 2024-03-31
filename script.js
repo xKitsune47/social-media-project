@@ -16,28 +16,75 @@ const accounts = [
     {
         username: "fc",
         passwd: "1",
+        liked_posts: [1, 3, 5],
     },
     {
         username: "lc",
         passwd: "2",
+        liked_posts: [1, 2, 3],
     },
     {
         username: "oc",
         passwd: "3",
+        liked_posts: [2, 3, 4],
     },
     {
         username: "ac",
         passwd: "4",
+        liked_posts: [2, 5],
     },
 ];
 
+const loremPostContent = `
+    Lorem ipsum dolor sit amet, consectetur adipiscing
+    elit. Morbi a scelerisque augue. Aliquam erat
+    volutpat. Aliquam erat volutpat. Cras rutrum ipsum
+    vitae erat posuere, a luctus augue lobortis. Sed non
+    lacinia tortor.
+`;
 const posts = [
     {
         post_id: 1,
-        text: "",
-        image: "",
+        text: loremPostContent,
+        image: "photo1.avif",
+        likes: 0,
+    },
+    {
+        post_id: 2,
+        text: loremPostContent,
+        image: "photo2.avif",
+        likes: 0,
+    },
+    {
+        post_id: 3,
+        text: loremPostContent,
+        image: "photo3.avif",
+        likes: 0,
+    },
+    {
+        post_id: 4,
+        text: loremPostContent,
+        image: "photo4.avif",
+        likes: 0,
+    },
+    {
+        post_id: 5,
+        text: loremPostContent,
+        image: "photo5.avif",
+        likes: 0,
     },
 ];
+
+// calculting likes count for each post (spaghetti code innit)
+accounts.forEach((acc) => {
+    acc.liked_posts.forEach((like) => {
+        posts.forEach((post) => {
+            if (post.post_id === like) {
+                post.likes += 1;
+            }
+        });
+    });
+});
 
 // changing between login and register function
 const changeType = function (swap) {
