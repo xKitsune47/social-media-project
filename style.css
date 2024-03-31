@@ -112,6 +112,7 @@ input {
         grid-template-rows: 1fr;
 
         .lipsum-logo {
+            cursor: pointer;
             width: 11rem;
             height: 2rem;
         }
@@ -127,6 +128,7 @@ input {
         }
 
         .bi:hover {
+            cursor: pointer;
             transform: scale(1.1);
             -webkit-transform: scale(1.1);
             -moz-transform: scale(1.1);
@@ -215,18 +217,19 @@ input {
                     }
 
                     .post__like__btn:hover {
+                        cursor: pointer;
                         transform: scale(1.05);
                         -webkit-transform: scale(1.05);
                         -moz-transform: scale(1.05);
                         -ms-transform: scale(1.05);
                         -o-transform: scale(1.05);
                     }
+
+                    .post__likes__count {
+                        font-size: 1.5rem;
+                    }
                 }
             }
         }
     }
-}
-
-input[type="checkbox"] {
-    width: 2rem;
 }
