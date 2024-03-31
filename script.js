@@ -36,44 +36,64 @@ const accounts = [
 ];
 
 const loremPostContent = `
-    Lorem ipsum dolor sit amet, consectetur adipiscing
-    elit. Morbi a scelerisque augue. Aliquam erat
-    volutpat. Aliquam erat volutpat. Cras rutrum ipsum
-    vitae erat posuere, a luctus augue lobortis. Sed non
-    lacinia tortor.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a scelerisque augue. Aliquam erat volutpat. Aliquam erat volutpat. Cras rutrum ipsum vitae erat posuere, a luctus augue lobortis. Sed non lacinia tortor.
 `;
+
 const posts = [
     {
         post_id: 1,
+        post_creator: "",
+        post_date: "",
         text: loremPostContent,
         image: "photo1.avif",
         likes: 0,
     },
     {
         post_id: 2,
+        post_creator: "",
+        post_date: "",
         text: loremPostContent,
         image: "photo2.avif",
         likes: 0,
     },
     {
         post_id: 3,
+        post_creator: "",
+        post_date: "",
         text: loremPostContent,
         image: "photo3.avif",
         likes: 0,
     },
     {
         post_id: 4,
+        post_creator: "",
+        post_date: "",
         text: loremPostContent,
         image: "photo4.avif",
         likes: 0,
     },
     {
         post_id: 5,
+        post_creator: "",
+        post_date: "",
         text: loremPostContent,
         image: "photo5.avif",
         likes: 0,
     },
 ];
+
+const dateToday = new Date();
+
+// adding random date to each post (max 7 days ago) and random post creator
+posts.forEach((post) => {
+    const randomDate = new Date(
+        dateToday.getTime() -
+            Math.floor(Math.random(0, 1) * 7) * 24 * 60 * 60 * 1000
+    );
+    const randomUser = Math.floor(Math.random(0, 1) * accounts.length);
+    post.post_creator = accounts[randomUser].username;
+    post.post_date = randomDate.toISOString();
+});
 
 // calculting likes count for each post (spaghetti code innit)
 accounts.forEach((acc) => {
@@ -85,6 +105,8 @@ accounts.forEach((acc) => {
         });
     });
 });
+
+console.log(posts);
 
 // changing between login and register function
 const changeType = function (swap) {
@@ -101,6 +123,12 @@ const changeType = function (swap) {
     }
 };
 
+const showPosts = function (acc) {
+    posts.forEach((post) => {
+        console.log(post);
+    });
+};
+
 // check user function
 const checkUser = function (user, password) {
     currentAccount = accounts.find((acc) => acc.username === user);
@@ -108,6 +136,7 @@ const checkUser = function (user, password) {
         console.log("logged in");
         appLoginPage.style.opacity = 0;
         appPage.style.opacity = 1;
+        showPosts(currentAccount);
     } else {
         alert("username or password are incorrect");
     }
