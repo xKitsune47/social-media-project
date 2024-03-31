@@ -8,6 +8,7 @@ const labelChangeSign = document.querySelector(".login__register__swap__label");
 
 const appLoginPage = document.querySelector(".starter");
 const appPage = document.querySelector(".app");
+const containerPosts = document.querySelector(".content");
 
 const inputUsername = document.querySelector(".login__register__username");
 const inputPassword = document.querySelector(".login__register__password");
@@ -96,16 +97,19 @@ posts.forEach((post) => {
 });
 
 // calculting likes count for each post (spaghetti code innit)
-accounts.forEach((acc) => {
-    acc.liked_posts.forEach((like) => {
-        posts.forEach((post) => {
-            if (post.post_id === like) {
-                post.likes += 1;
-            }
+const calculateLikes = function () {
+    posts.forEach((post) => (post.likes = 0));
+    accounts.forEach((acc) => {
+        acc.liked_posts.forEach((like) => {
+            posts.forEach((post) => {
+                if (post.post_id === like) {
+                    post.likes += 1;
+                }
+            });
         });
     });
-});
-
+};
+calculateLikes();
 console.log(posts);
 
 // changing between login and register function
@@ -124,9 +128,72 @@ const changeType = function (swap) {
 };
 
 const showPosts = function (acc) {
+    containerPosts.textContent = "";
     posts.forEach((post) => {
-        console.log(post);
+        const postId = post.post_id;
+        const postUser = post.post_creator;
+        const postImage = post.image;
+        const postText = post.text;
+        const postLikes = post.likes;
+
+        const postDate = new Date(post.post_date).getTime();
+        let daysAgo = (dateToday.getTime() - postDate) / (24 * 60 * 60 * 1000);
+        if (daysAgo === 0) {
+            daysAgo = "Today";
+        } else if (daysAgo === 1) {
+            daysAgo = `${daysAgo} day ago`;
+        } else {
+            daysAgo = `${daysAgo} days ago`;
+        }
+
+        let ifLiked;
+        if (acc.liked_posts.includes(postId)) {
+            ifLiked = "checked";
+        } else {
+            ifLiked = "";
+        }
+
+        const content = `
+            <div class="post">
+                <div class="post__img">
+                    <img
+                        src="post_images/${postImage}"
+                        class="post__img__class"
+                        loading="lazy"
+                    />
+                </div>
+                <div class="post__text">
+                    <div class="post__title">
+                        <div class="post__username">${postUser}</div>
+                        <div class="post__date">${daysAgo}</div>
+                    </div>
+                    <div class="post__description">
+                        ${postText}
+                    </div>
+                    <div class="post__likes">
+                        <input type="checkbox" ${ifLiked} onclick="likePost(${postId})" />
+                        <span class="post__likes__count">${postLikes}👍</span>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        containerPosts.insertAdjacentHTML("beforeend", content);
     });
+};
+
+// like/dislike a post
+const likePost = function (postId) {
+    const liked = currentAccount.liked_posts;
+    if (liked.includes(postId)) {
+        liked.splice(liked.indexOf(postId), 1);
+    } else {
+        liked.push(postId);
+    }
+
+    currentAccount.liked_posts = liked;
+    calculateLikes();
+    showPosts(currentAccount);
 };
 
 // check user function
