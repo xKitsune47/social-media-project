@@ -89,6 +89,7 @@ input {
 }
 
 #app {
+    margin-bottom: 2rem;
     width: 60%;
     opacity: 0;
     transition: all 0.5s;
@@ -173,8 +174,38 @@ input {
 
                     display: grid;
                     grid-template-columns: 50% 50%;
+
+                    .post__like__btn {
+                        z-index: 3;
+                        width: 3rem;
+                        height: 3rem;
+                        background-color: #321e52;
+                        outline: none;
+                        border: none;
+                        transition: 0.5s all;
+                        -webkit-transition: 0.5s all;
+                        -moz-transition: 0.5s all;
+                        -ms-transition: 0.5s all;
+                        -o-transition: 0.5s all;
+                        .bi {
+                            width: 2rem;
+                            height: 2rem;
+                        }
+                    }
+
+                    .post__like__btn:hover {
+                        transform: scale(1.05);
+                        -webkit-transform: scale(1.05);
+                        -moz-transform: scale(1.05);
+                        -ms-transform: scale(1.05);
+                        -o-transform: scale(1.05);
+                    }
                 }
             }
         }
     }
+}
+
+input[type="checkbox"] {
+    width: 2rem;
 }
