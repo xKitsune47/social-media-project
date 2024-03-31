@@ -176,7 +176,7 @@ const showPosts = function (acc) {
                     </div>
                     <div class="post__likes">
                         <button onclick="likePost(${postId})" class="post__like__btn">${ifLiked}</button>
-                        <span class="post__likes__count">${postLikes}👍</span>
+                        <span class="post__likes__count">${postLikes} 👍</span>
                     </div>
                 </div>
             </div>
