@@ -15,7 +15,6 @@
 
 body {
     font-family: "Kanit", sans-serif;
-    height: 100%;
     background-color: #201335;
     color: aliceblue;
 }
@@ -29,13 +28,13 @@ input {
 }
 
 #starter {
+    z-index: 1;
     opacity: 1;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr;
     gap: 0px;
     font-size: 1.5rem;
-
     text-align: center;
     padding: 2rem;
     height: 20rem;
@@ -46,6 +45,11 @@ input {
     -moz-border-radius: 2rem;
     -ms-border-radius: 2rem;
     -o-border-radius: 2rem;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
 }
 
 .starter__center {
@@ -85,17 +89,92 @@ input {
 }
 
 #app {
-    width: 80%;
-    background-color: black;
+    width: 60%;
     opacity: 0;
-
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 4fr;
-    gap: 0px;
-    height: 100%;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
 
     .navbar {
-        opacity: 0.2;
+        width: inherit;
+        height: 5rem;
+        position: fixed;
+        justify-content: center;
+        text-align: center;
+        z-index: 99;
+        background-color: #201335;
+
+        display: grid;
+        grid-template-columns: 3fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+
+        .lipsum-logo {
+            width: 11rem;
+            height: 2rem;
+        }
+
+        .bi {
+            width: 2rem;
+            height: 2rem;
+        }
+    }
+
+    .content {
+        position: relative;
+        top: 5rem;
+
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-auto-rows: 25rem;
+        gap: 2rem;
+
+        .post {
+            padding: 2.5rem;
+            width: 80%;
+
+            display: grid;
+            grid-template-columns: 50% 50%;
+            grid-template-rows: 1fr;
+
+            background-color: #321e52;
+            border: #9649cb solid 1px;
+
+            .post__img__class {
+                height: 20rem;
+                width: 20rem;
+                object-fit: cover;
+            }
+
+            .post__text {
+                height: 20rem;
+                padding: 1rem;
+
+                display: grid;
+                grid-template-rows: 15% 70% 15%;
+
+                .post__title {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+
+                    .post__username {
+                        font-size: 1.5rem;
+                    }
+
+                    .post__date {
+                        opacity: 0.5;
+                    }
+                }
+
+                .post__likes {
+                    background-color: #321e52;
+                    width: 100%;
+
+                    display: grid;
+                    grid-template-columns: 50% 50%;
+                }
+            }
+        }
     }
 }
