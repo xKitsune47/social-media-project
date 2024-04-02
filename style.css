@@ -81,6 +81,7 @@ input {
 .starter__button {
     width: 10rem;
     height: 1.5rem;
+    border: none;
     border-radius: 0.5rem;
     -webkit-border-radius: 0.5rem;
     -moz-border-radius: 0.5rem;
@@ -88,10 +89,17 @@ input {
     -o-border-radius: 0.5rem;
 }
 
+.starter__button:active {
+    background: #e0e0e0;
+    box-shadow: inset 0.25rem 0.25rem 0.5rem #bebebe,
+        inset -0.25rem -0.25rem 0.5rem #ffffff;
+}
+
 #app {
-    margin-bottom: 2rem;
     width: 60%;
     opacity: 0;
+    position: relative;
+
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
@@ -151,7 +159,7 @@ input {
 
         display: grid;
         grid-template-columns: 1fr;
-        grid-auto-rows: 25rem;
+        grid-auto-rows: minmax(20rem, fit-content);
         gap: 2rem;
 
         .post {
@@ -164,6 +172,11 @@ input {
 
             background-color: #321e52;
             border: #9649cb solid 1px;
+            border-radius: 0.5rem;
+            -webkit-border-radius: 0.5rem;
+            -moz-border-radius: 0.5rem;
+            -ms-border-radius: 0.5rem;
+            -o-border-radius: 0.5rem;
 
             .post__img__class {
                 height: 20rem;
@@ -230,6 +243,105 @@ input {
                     }
                 }
             }
+        }
+    }
+
+    .settings {
+        position: absolute;
+        position: fixed;
+        right: 0;
+        top: 5rem;
+        width: 0;
+        height: 100%;
+        background-color: #321e52;
+        display: grid;
+        grid-template-rows: repeat(4, 1fr);
+        text-align: center;
+
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+
+        .settings__element {
+            padding: 2rem;
+            cursor: pointer;
+
+            .bi {
+                width: 2rem;
+                height: 2rem;
+            }
+        }
+    }
+
+    .change__login__details {
+        display: none;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        position: absolute;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        z-index: 255;
+
+        transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+
+        .change__element {
+            padding: 0.5rem;
+            margin: 0.5rem;
+
+            border-radius: 0.5rem;
+            -webkit-border-radius: 0.5rem;
+            -moz-border-radius: 0.5rem;
+            -ms-border-radius: 0.5rem;
+            -o-border-radius: 0.5rem;
+        }
+
+        .change__element__btn {
+            border: none;
+        }
+
+        .change__element__btn:active {
+            background: #e0e0e0;
+            box-shadow: inset 0.25rem 0.25rem 0.5rem #bebebe,
+                inset -0.25rem -0.25rem 0.5rem #ffffff;
+        }
+
+        .change__element__input {
+            border: #9649cb solid 0.125rem;
+            background-color: #321e52;
+            color: aliceblue;
+        }
+
+        .change__login__details__popup {
+            width: fit-content;
+            height: fit-content;
+            width: 20%;
+            text-align: center;
+            background-color: #321e52;
+            border: #9649cb solid 0.125rem;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+
+            border-radius: 1rem;
+            -webkit-border-radius: 1rem;
+            -moz-border-radius: 1rem;
+            -ms-border-radius: 1rem;
+            -o-border-radius: 1rem;
         }
     }
 }

@@ -2,16 +2,35 @@
 
 const loginRegisterButton = document.querySelector(".login__btn");
 const loginRegisterSwap = document.querySelector(".register__swap__btn");
+const openSettingsBtn = document.querySelector(".navbar__settings__btn");
+const confirmChangeBtn = document.querySelector(
+    ".change__login__details__confirm__btn"
+);
+const cancelChangeBtn = document.querySelector(
+    ".change__login__details__cancel__btn"
+);
 
 const labelSign = document.querySelector(".login__register__form__label");
 const labelChangeSign = document.querySelector(".login__register__swap__label");
+const labelChangeSuccess = document.querySelector(
+    ".change__login__details__success"
+);
+const labelTypeOfOperation = document.querySelector(
+    ".change__login__details__operation"
+);
 
 const appLoginPage = document.querySelector(".starter");
 const appPage = document.querySelector(".app");
 const containerPosts = document.querySelector(".content");
+const containerSettings = document.querySelector(".settings");
+const containerChangeLoginDetails = document.querySelector(
+    ".change__login__details"
+);
 
 const inputUsername = document.querySelector(".login__register__username");
 const inputPassword = document.querySelector(".login__register__password");
+const inputChangeField1 = document.querySelector(".change__details__field__1");
+const inputChangeField2 = document.querySelector(".change__details__field__2");
 
 const accounts = [
     {
@@ -83,9 +102,113 @@ const posts = [
     },
 ];
 
-const dateToday = new Date();
+// // // //
+// // // // SETTINGS
+// // // //
+
+// open settings
+openSettingsBtn.onclick = (e) => {
+    containerSettings.style.width = "15rem";
+
+    e.stopPropagation();
+};
+
+document.body.addEventListener("click", () => {
+    containerSettings.style.width = "0";
+});
+
+// change username/password
+let typeofChange;
+const changeLoginDetails = function (type) {
+    labelTypeOfOperation.textContent = "";
+    labelChangeSuccess.textContent = "";
+    containerChangeLoginDetails.style.display = "block";
+    typeofChange = type;
+
+    if (typeofChange === "username") {
+        inputChangeField1.setAttribute("placeholder", "Desired username");
+        inputChangeField2.setAttribute("placeholder", "Password");
+        labelTypeOfOperation.innerHTML = `<h2>Change ${typeofChange}</h2>`;
+    } else if (typeofChange === "password") {
+        inputChangeField1.setAttribute("placeholder", "Desired password");
+        inputChangeField2.setAttribute("placeholder", "Old password");
+        labelTypeOfOperation.innerHTML = `<h2>Change ${typeofChange}</h2>`;
+    } else if (typeofChange === "delete") {
+        inputChangeField1.setAttribute("placeholder", "Confirm user");
+        inputChangeField2.setAttribute("placeholder", "Confirm password");
+        labelTypeOfOperation.innerHTML = `<h2>${
+            typeofChange[0].toUpperCase() + typeofChange.slice(1)
+        } account</h2>`;
+    }
+};
+
+const success = function () {
+    labelChangeSuccess.textContent = `${
+        typeofChange[0].toUpperCase() + typeofChange.slice(1)
+    } changed successfully`;
+    inputChangeField1.value = inputChangeField2.value = "";
+
+    setTimeout(() => {
+        containerChangeLoginDetails.style.display = "none";
+    }, 2500);
+};
+
+confirmChangeBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    const field1 = inputChangeField1;
+    const field2 = inputChangeField2;
+    const acc = currentAccount;
+    const usernameExists = Boolean(
+        accounts.find((acco) => acco.username === field1.value)
+    );
+    if (typeofChange === "username") {
+        if (field2.value === acc.passwd && !usernameExists) {
+            accounts[accounts.indexOf(acc)] = {
+                username: field1.value,
+                passwd: acc.passwd,
+                liked_posts: acc.liked_posts,
+            };
+            success();
+        } else if (usernameExists) {
+            alert("this username is already in use");
+        }
+    } else if (typeofChange === "password") {
+        if (field1.value !== acc.passwd && field2.value === acc.passwd) {
+            accounts[accounts.indexOf(acc)] = {
+                username: acc.username,
+                passwd: field1.value,
+                liked_posts: acc.liked_posts,
+            };
+            success();
+        } else if (field1.value === acc.passwd) {
+            alert("you are already using this password");
+        }
+    } else if (typeofChange === "delete") {
+        if (field1.value === acc.username && field2.value === acc.passwd) {
+            accounts.splice(accounts.indexOf(acc), 1);
+            logOut();
+        }
+    }
+});
+
+cancelChangeBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    inputChangeField1.value = inputChangeField2.value = "";
+    containerChangeLoginDetails.style.display = "none";
+});
+
+// log out
+const logOut = function () {
+    appLoginPage.style.opacity = 1;
+    appPage.style.opacity = 0;
+};
+
+// // // //
+// // // // SITE FUNCTIONALITIES
+// // // //
 
 // adding random date to each post (max 7 days ago) and random post creator
+const dateToday = new Date();
 posts.forEach((post) => {
     const randomDate = new Date(
         dateToday.getTime() -
@@ -110,7 +233,6 @@ const calculateLikes = function () {
     });
 };
 calculateLikes();
-console.log(posts);
 
 // changing between login and register function
 const changeType = function (swap) {
@@ -185,7 +307,6 @@ const showPosts = function (acc) {
         containerPosts.insertAdjacentHTML("beforeend", content);
     });
 };
-// <input type="checkbox" ${ifLiked} onclick="likePost(${postId})" class="post__like__chckbx" />
 
 // like/dislike a post
 const likePost = function (postId) {
@@ -205,7 +326,6 @@ const likePost = function (postId) {
 const checkUser = function (user, password) {
     currentAccount = accounts.find((acc) => acc.username === user);
     if (currentAccount?.passwd === password) {
-        console.log("logged in");
         appLoginPage.style.opacity = 0;
         appPage.style.opacity = 1;
         showPosts(currentAccount);
@@ -224,6 +344,7 @@ const createUser = function (user, password) {
         accounts.push({
             username: user,
             passwd: password,
+            liked_posts: [],
         });
         inputPassword.value = inputUsername.value = "";
     }

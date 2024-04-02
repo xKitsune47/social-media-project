@@ -57,6 +57,7 @@
         <!-- main page -->
         <section id="app" class="app">
             <div class="navbar">
+                <!-- logo -->
                 <div class="navbar__logo">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +75,8 @@
                         ></path>
                     </svg>
                 </div>
-                <div class="navbar__element">
+                <!-- chats -->
+                <div class="navbar__element navbar__chat__btn">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor"
@@ -86,7 +88,8 @@
                         />
                     </svg>
                 </div>
-                <div class="navbar__element">
+                <!-- profile -->
+                <div class="navbar__element navbar__profile__btn">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor"
@@ -98,7 +101,8 @@
                         />
                     </svg>
                 </div>
-                <div class="navbar__element">
+                <!-- settings -->
+                <div class="navbar__element navbar__settings__btn">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor"
@@ -115,6 +119,95 @@
                 </div>
             </div>
             <div class="content"></div>
+
+            <!-- settings menu -->
+            <div class="settings">
+                <div class="settings__container">
+                    <div
+                        class="settings__element settings__element__change__username"
+                        onclick="changeLoginDetails('username')"
+                    >
+                        <span class="span__change">Change username</span>
+                    </div>
+                    <div
+                        class="settings__element settings__element__change__password"
+                        onclick="changeLoginDetails('password')"
+                    >
+                        <span class="span__change">Change password</span>
+                    </div>
+                    <div
+                        class="settings__element settings__element__log__out"
+                        onclick="logOut()"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            class="bi bi-box-arrow-right"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"
+                            />
+                            <path
+                                fill-rule="evenodd"
+                                d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"
+                            />
+                        </svg>
+                    </div>
+                    <div
+                        class="settings__element settings__element__delete__user"
+                        onclick="changeLoginDetails('delete')"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            class="bi bi-person-x"
+                            viewBox="0 0 16 16"
+                        >
+                            <path
+                                d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m.256 7a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"
+                            />
+                            <path
+                                d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m-.646-4.854.646.647.646-.647a.5.5 0 0 1 .708.708l-.647.646.647.646a.5.5 0 0 1-.708.708l-.646-.647-.646.647a.5.5 0 0 1-.708-.708l.647-.646-.647-.646a.5.5 0 0 1 .708-.708"
+                            />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="change__login__details">
+                <div class="change__login__details__popup">
+                    <span
+                        class="change__login__details__operation change__element"
+                    ></span>
+                    <form class="change__login__details__form">
+                        <input
+                            type="text"
+                            placeholder="username"
+                            class="change__details__field__1 change__element change__element__input"
+                        /><br />
+                        <input
+                            type="text"
+                            placeholder="passwd"
+                            class="change__details__field__2 change__element change__element__input"
+                        /><br />
+                        <button
+                            class="change__login__details__confirm__btn change__element change__element__btn"
+                        >
+                            Confirm
+                        </button>
+                        <button
+                            class="change__login__details__cancel__btn change__element change__element__btn"
+                        >
+                            Cancel
+                        </button>
+                    </form>
+                    <span
+                        class="change__login__details__success change__element"
+                    ></span>
+                </div>
+            </div>
         </section>
 
         <!-- script -->
